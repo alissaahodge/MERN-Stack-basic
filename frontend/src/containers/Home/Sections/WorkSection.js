@@ -52,7 +52,7 @@ export default function WorkSection() {
             }}
             validationSchema={Yup.object().shape({
               email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-              message: Yup.string().email('Must include a message').max(255).required('Message is required'),
+              message: Yup.string().required('Message is required'),
             })}
             onSubmit={(values) => {
               navigate('/', {replace: true});

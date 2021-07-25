@@ -1,8 +1,10 @@
+import React from 'react';
 import {Navigate} from 'react-router-dom';
 import DashboardLayout from './components/DashboardLayout';
 import MainLayout from './components/MainLayout';
 import Account from './containers/Settings/Account';
 import PostList from './containers/Post/PostList';
+import PostForm from './containers/Post/PostForm';
 import Dashboard from './containers/Dashboard/Dashboard';
 import Login from './containers/Auth/Login';
 import NotFound from './pages/NotFound';
@@ -18,6 +20,8 @@ const routes = [
     children: [
       {path: 'account', element: <Account/>},
       {path: 'posts', element: <PostList/>},
+      {path: 'posts/edit', element: <PostForm/>},
+      {path: 'posts/edit/:id', element: <PostForm/>},
       {path: 'dashboard', element: <Dashboard/>},
       {path: 'home', element: <Home/>},
       {path: 'products', element: <ProductList/>},

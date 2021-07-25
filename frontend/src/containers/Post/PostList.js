@@ -1,13 +1,15 @@
 import { Helmet } from 'react-helmet';
 import { Box, Container } from '@material-ui/core';
-import CustomerListResults from '../../components/customer/CustomerListResults';
-import CustomerListToolbar from '../../components/customer/CustomerListToolbar';
-import customers from '../../__mocks__/customers';
+import PostListResults from '../../components/post/PostListResults';
+import PostListToolbar from '../../components/post/PostListToolbar';
+import {useSelector} from 'react-redux';
 
-const CustomerList = () => (
-  <>
+const PostList = () => {
+  const {posts} = useSelector((state) => state.posts);
+
+return(  <>
     <Helmet>
-      <title>Customers | Material Kit</title>
+      <title>Posts | Mern Stack</title>
     </Helmet>
     <Box
       sx={{
@@ -17,13 +19,13 @@ const CustomerList = () => (
       }}
     >
       <Container maxWidth={false}>
-        <CustomerListToolbar />
-        <Box sx={{ pt: 3 }}>
-          <CustomerListResults customers={customers} />
+        <PostListToolbar/>
+        <Box sx={{pt: 3}}>
+          <PostListResults posts={posts}/>
         </Box>
       </Container>
     </Box>
-  </>
-);
+  </>);
+};
 
-export default CustomerList;
+export default PostList;

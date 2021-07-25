@@ -15,6 +15,7 @@ import * as api from '../api';
 
 export const getPosts = (page) => async (dispatch) => {
     try {
+      console.log(page)
         dispatch({type: START_LOADING});
         const {data} = await api.fetchPosts(page);
         dispatch({type: FETCH_ALL, payload: data});
@@ -51,11 +52,10 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     }
 };
 
-export const createPosts = (post, history) => async (dispatch) => {
+export const createPosts = (post) => async (dispatch) => {
     try {
         dispatch({type: START_LOADING});
         const {data} = await api.createPost(post);
-        history.push(`/posts/${data._id}`);
 
         dispatch({type: CREATE, payload: data});
         dispatch({type: END_LOADING});
@@ -87,52 +87,6 @@ export const likePost = (id) => async (dispatch) => {
     try {
         const {data} = await api.likePost(id);
         return dispatch({type: LIKE_POST, payload: data});
-
-    } catch (error) {
-        console.log(error.message)
-    }
-};
-export const commentPost = (value, id) => async (dispatch) => {
-    try {
-         const {data} = await api.commentPost(value, id);
-         dispatch({type: COMMENT_POST, payload: data});
-         return data.comments;
-
-    } catch (error) {
-        console.log(error.message)
-    }
-};
-
-
-export const getPostComments = (postId) => async (dispatch) => {
-    try {
-        dispatch({type: START_LOADING});
-        const {data} = await api.fetchComments(postId);
-        dispatch({type: FETCH_POST_COMMENTS, payload: data});
-        dispatch({type: END_LOADING});
-
-    } catch (error) {
-        console.log(error.message);
-    }
-};
-
-
-export const createPostComment = (postComment) => async (dispatch) => {
-    try {
-        dispatch({type: START_LOADING});
-        const {data} = await api.createComment(postComment);
-        dispatch({type: CREATE_POST_COMMENT, payload: data});
-        dispatch({type: END_LOADING});
-    } catch (error) {
-        console.log(error.message);
-    }
-};
-
-
-export const deletePostComment = (id) => async (dispatch) => {
-    try {
-        await api.deleteComment(id);
-        dispatch({type: DELETE_POST_COMMENT, payload: id})
 
     } catch (error) {
         console.log(error.message)
