@@ -1,5 +1,13 @@
 import {Helmet} from 'react-helmet';
-import {Box, Paper, Container, Grid, TextField, Typography} from '@material-ui/core';
+import {
+  Box,
+  Paper,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+  Button
+} from '@material-ui/core';
 import PostFormToolbar from '../../components/post/PostFormToolbar';
 import {Formik} from "formik";
 import FileBase from 'react-file-base64';
@@ -151,6 +159,35 @@ const PostForm = () => {
                     <FileBase type="file" multiple={false}
                               onDone={({base64}) => values.selectedFile = base64}/>
                   </form>
+                  {id && values.selectedFile!== null && <div>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        pb: 3
+                      }}
+                    >
+                      <img style={{
+                        borderRadius: '20px',
+                        objectFit: 'cover',
+                        width: '90%',
+                        maxHeight: '500px',
+                        maxWidth: '400px'
+                      }} src={values.selectedFile} alt={values.title}/>
+
+                    </Box>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        pb: 3
+                      }}
+                    >
+                      <Button size="small" color="primary" variant="contained"
+                              onClick={() => setPostData({...postData, selectedFile: ''})}
+                      >
+                        Remove Image
+                      </Button></Box></div>}
                 </Paper>
               </Box>
             </Container>
