@@ -21,7 +21,6 @@ import {GOOGLE_CLIENT_ID} from '../../environment/environment';
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   return (
     <>
       <Helmet>
@@ -47,8 +46,10 @@ const Login = () => {
               password: Yup.string().max(255).required('Password is required')
             })}
             onSubmit={(values) => {
-              dispatch(signin(values));
-              navigate('/app/dashboard', {replace: true});
+              dispatch(signin(values)).then(() => {
+                navigate('/app/dashboard', {replace: true});
+
+              })
             }}
             googleSuccess={async (res) => {
               const result = res?.profileObj;
