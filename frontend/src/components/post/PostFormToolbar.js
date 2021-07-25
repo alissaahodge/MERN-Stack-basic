@@ -1,17 +1,12 @@
-import React, {useState} from 'react';
-import {Link as RouterLink, useNavigate} from 'react-router-dom';
+import React from 'react';
 import {
   Box,
   Button,
   Card,
-  CardContent,
-  TextField,
-  InputAdornment,
-  SvgIcon
 } from '@material-ui/core';
-import {Search as SearchIcon} from 'react-feather';
-import {useDispatch} from "react-redux";
-import {getPostsBySearch} from "../../store/actions/posts";
+import DeleteIcon from '@material-ui/icons/Delete';
+import ConfirmDialog from '../ConfirmDialog/ConfirmDialog';
+
 
 const PostFormToolbar = (props) => {
   return (
@@ -29,6 +24,13 @@ const PostFormToolbar = (props) => {
         >
           Save Post
         </Button>
+
+        <ConfirmDialog
+          dialogText="Are You Sure You Want to Remove This?"
+          okBtnText="Yes" cancelBtnTxt="No" openState={false}
+          color="primary" size="small"
+          removeFunction={props.onDelete}
+          dialogBtnTxt={<><DeleteIcon fontSize="small"/>&nbsp;Remove</>}/>
       </Box>
       <Box sx={{mt: 3}}>
         <Card>

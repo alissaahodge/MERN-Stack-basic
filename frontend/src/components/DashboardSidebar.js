@@ -33,12 +33,12 @@ const items = [
   {
     href: '/app/posts',
     icon: BookIcon,
-    title: 'Posts'
+    title: 'Manage Posts'
   },
   {
     href: '/app/products',
     icon: ShoppingBagIcon,
-    title: 'Products'
+    title: 'Posts Listing'
   },
   {
     href: '/app/account',

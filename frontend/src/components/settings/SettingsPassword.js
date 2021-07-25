@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, {useState} from 'react';
 import {
   Box,
   Button,
@@ -8,12 +8,20 @@ import {
   Divider,
   TextField
 } from '@material-ui/core';
+import {updateAccountPassword} from "../../store/actions/auth";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router";
+import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
+import DeleteIcon from "@material-ui/core/SvgIcon/SvgIcon";
 
 const SettingsPassword = (props) => {
+  const id = JSON.parse(localStorage.getItem('profile')).result._id;
   const [values, setValues] = useState({
     password: '',
-    confirm: ''
+    confirmPassword: ''
   });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setValues({
@@ -21,7 +29,14 @@ const SettingsPassword = (props) => {
       [event.target.name]: event.target.value
     });
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateAccountPassword(id, {
+      ...values
+    }));
+    navigate('/home', {replace: true});
 
+  };
   return (
     <form {...props}>
       <Card>
@@ -29,10 +44,11 @@ const SettingsPassword = (props) => {
           subheader="Update password"
           title="Password"
         />
-        <Divider />
+        <Divider/>
         <CardContent>
           <TextField
             fullWidth
+            required
             label="Password"
             margin="normal"
             name="password"
@@ -42,17 +58,18 @@ const SettingsPassword = (props) => {
             variant="outlined"
           />
           <TextField
+            required
             fullWidth
             label="Confirm password"
             margin="normal"
-            name="confirm"
+            name="confirmPassword"
             onChange={handleChange}
             type="password"
-            value={values.confirm}
+            value={values.confirmPassword}
             variant="outlined"
           />
         </CardContent>
-        <Divider />
+        <Divider/>
         <Box
           sx={{
             display: 'flex',
@@ -60,12 +77,17 @@ const SettingsPassword = (props) => {
             p: 2
           }}
         >
-          <Button
-            color="primary"
-            variant="contained"
-          >
-            Update
-          </Button>
+          <ConfirmDialog
+            dialogText="Are you sure? You will be logged out upon reset of your password."
+            okBtnText="Yes" cancelBtnTxt="No" openState={false}
+            removeFunction={handleSubmit}
+            color="primary" size="small"
+            dialogBtnTxt={<> <Button
+              color="primary"
+              variant="contained"
+            >
+              Update
+            </Button></>}/>
         </Box>
       </Card>
     </form>

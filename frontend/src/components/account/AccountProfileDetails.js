@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import {
   Box,
   Button,
@@ -9,31 +9,15 @@ import {
   Grid,
   TextField
 } from '@material-ui/core';
+import {useDispatch} from "react-redux";
+import {updateAccount} from "../../store/actions/auth";
+import {useNavigate} from "react-router";
 
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
 
 const AccountProfileDetails = (props) => {
-  const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
-    email: 'demo@devias.io',
-    phone: '',
-    state: 'Alabama',
-    country: 'USA'
-  });
+  const [values, setValues] = useState(JSON.parse(localStorage.getItem('profile')).result);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setValues({
@@ -42,8 +26,17 @@ const AccountProfileDetails = (props) => {
     });
   };
 
+  const handleSubmit = () => {
+    dispatch(updateAccount(values._id, {
+      ...values
+    }));
+    navigate('/app/account', {replace: true});
+    window.location.reload();
+
+  };
   return (
     <form
+      onSubmit={handleSubmit}
       autoComplete="off"
       noValidate
       {...props}
@@ -53,7 +46,7 @@ const AccountProfileDetails = (props) => {
           subheader="The information can be edited"
           title="Profile"
         />
-        <Divider />
+        <Divider/>
         <CardContent>
           <Grid
             container
@@ -105,65 +98,9 @@ const AccountProfileDetails = (props) => {
                 variant="outlined"
               />
             </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Phone Number"
-                name="phone"
-                onChange={handleChange}
-                type="number"
-                value={values.phone}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Country"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Select State"
-                name="state"
-                onChange={handleChange}
-                required
-                select
-                SelectProps={{ native: true }}
-                value={values.state}
-                variant="outlined"
-              >
-                {states.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
-            </Grid>
           </Grid>
         </CardContent>
-        <Divider />
+        <Divider/>
         <Box
           sx={{
             display: 'flex',
@@ -174,6 +111,7 @@ const AccountProfileDetails = (props) => {
           <Button
             color="primary"
             variant="contained"
+            onClick={handleSubmit}
           >
             Save details
           </Button>

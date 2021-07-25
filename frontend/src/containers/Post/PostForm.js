@@ -8,7 +8,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from 'react-router-dom';
 import {useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {createPosts, updatePost, getPost} from "../../store/actions/posts";
+import {createPosts, updatePost, getPost, deletePost} from "../../store/actions/posts";
 
 const PostForm = () => {
   const initialState = {
@@ -59,6 +59,11 @@ const PostForm = () => {
             }
 
           }}
+          onDelete={(id) => {
+            dispatch(deletePost(id));
+            navigate('/app/posts', {replace: true});
+
+          }}
         >
           {({
               errors,
@@ -66,11 +71,12 @@ const PostForm = () => {
               handleChange,
               handleSubmit,
               isSubmitting,
+              onDelete,
               touched,
               values
             }) => (
             <Container maxWidth={false}>
-              <PostFormToolbar onSubmit={handleSubmit}/>
+              <PostFormToolbar onSubmit={handleSubmit} onDelete={onDelete}/>
               <Box sx={{pt: 3}}>
                 <Paper>
                   < form onSubmit={handleSubmit}>
