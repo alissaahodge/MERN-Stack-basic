@@ -2,7 +2,6 @@ import {Helmet} from 'react-helmet';
 import {Box, Paper, Container, Grid, TextField, Typography} from '@material-ui/core';
 import PostFormToolbar from '../../components/post/PostFormToolbar';
 import {Formik} from "formik";
-import * as Yup from "yup";
 import FileBase from 'react-file-base64';
 import React, {useEffect, useState} from "react";
 import {useParams} from 'react-router-dom';
@@ -117,6 +116,7 @@ const PostForm = () => {
                       type="text"
                       value={values.title}
                       variant="outlined"
+                      required
                     />
                     <TextField
                       error={Boolean(touched.message && errors.message)}
@@ -132,6 +132,7 @@ const PostForm = () => {
                       type="message"
                       value={values.message}
                       variant="outlined"
+                      required
                     />
 
                     <TextField

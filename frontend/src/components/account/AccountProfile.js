@@ -1,4 +1,3 @@
-import moment from 'moment';
 import {
   Avatar,
   Box,
@@ -9,13 +8,26 @@ import {
   Divider,
   Typography
 } from '@material-ui/core';
-import {useState} from "react";
+import React, {useState} from "react";
+import FileBase from "react-file-base64";
+import {updateAccount} from "../../store/actions/auth";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router";
 
 
 const AccountProfile = (props) => {
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
+  const handleSubmit = () => {
+    dispatch(updateAccount(user._id, {
+      ...user
+    }));
+    navigate('/app/account', {replace: true});
+    window.location.reload();
+
+  };
   return (
     <Card {...props}>
       <CardContent>
@@ -50,13 +62,16 @@ const AccountProfile = (props) => {
       </CardContent>
       <Divider/>
       <CardActions>
-        <Button
-          color="primary"
-          fullWidth
-          variant="text"
-        >
-          Upload picture
-        </Button>
+        {/*<Button*/}
+        {/*  color="primary"*/}
+        {/*  fullWidth*/}
+        {/*  variant="text"*/}
+        {/*>*/}
+        {/*  Upload picture*/}
+        {/*</Button>*/}
+
+        <FileBase type="file" multiple={false}
+                  onDone={({base64}) => {user.result.profilePhoto = base64; handleSubmit()}}/>
       </CardActions>
     </Card>
   )
