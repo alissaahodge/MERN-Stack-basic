@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link as RouterLink, useNavigate} from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {GoogleLogin} from "react-google-login";
@@ -18,15 +18,12 @@ import {
 import {signup} from '../../store/actions/auth';
 import GoogleIcon from "../../icons/Google";
 import {GOOGLE_CLIENT_ID} from '../../environment/environment';
-import CustomizedSnackbars from "../../components/SnackBar/SnackBar";
 
 const Register = () => {
-  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
     <>
-      <CustomizedSnackbars severity="success" message="Registration Successful!" open={open}/>
       <Helmet>
         <title>Register | Mern Stack</title>
       </Helmet>
@@ -61,7 +58,6 @@ const Register = () => {
             }
             onSubmit={(values) => {
               dispatch(signup(values));
-              setOpen(true);
               navigate('/app/dashboard', {replace: true});
             }}
             googleSuccess={async (res) => {
