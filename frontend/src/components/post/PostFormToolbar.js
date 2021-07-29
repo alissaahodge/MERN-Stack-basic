@@ -25,12 +25,12 @@ const PostFormToolbar = (props) => {
           Save Post
         </Button>
 
-        <ConfirmDialog
+        {props.showRemove===true && <ConfirmDialog
           dialogText="Are You Sure You Want to Remove This?"
           okBtnText="Yes" cancelBtnTxt="No" openState={false}
           color="primary" size="small"
           removeFunction={props.onDelete}
-          dialogBtnTxt={<><DeleteIcon fontSize="small"/>&nbsp;Remove</>}/>
+          dialogBtnTxt={<><DeleteIcon fontSize="small"/>&nbsp;Remove</>}/>}
       </Box>
       <Box sx={{mt: 3}}>
         <Card>

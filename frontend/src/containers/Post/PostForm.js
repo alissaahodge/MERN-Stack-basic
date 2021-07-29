@@ -85,7 +85,7 @@ const PostForm = () => {
               values
             }) => (
             <Container maxWidth={false}>
-              <PostFormToolbar onSubmit={handleSubmit} onDelete={onDelete}/>
+              <PostFormToolbar onSubmit={handleSubmit} onDelete={onDelete} showRemove={!!id}/>
               <Box sx={{pt: 3}}>
                 <Paper>
                   < form onSubmit={handleSubmit}>
