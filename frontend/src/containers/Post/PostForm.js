@@ -37,7 +37,9 @@ const PostForm = () => {
   }, [post]);
 
   useEffect(() => {
-    dispatch(getPost(id));
+    if (id) {
+      dispatch(getPost(id));
+    }
   }, [id]);
   return (<>
     <Helmet>
@@ -159,7 +161,7 @@ const PostForm = () => {
                     <FileBase type="file" multiple={false}
                               onDone={({base64}) => values.selectedFile = base64}/>
                   </form>
-                  {id && values.selectedFile!== null && <div>
+                  {id && values.selectedFile !== null && <div>
                     <Box
                       sx={{
                         display: 'flex',
