@@ -169,7 +169,7 @@ const PostListResults = ({posts, ...rest}) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={numberOfPages}
+        count={numberOfPages || 0}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleLimitChange}
         page={Number(page) || 1}
