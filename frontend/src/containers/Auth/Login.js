@@ -18,6 +18,8 @@ import GoogleIcon from '../../icons/Google';
 import {signin} from '../../store/actions/auth';
 import {GOOGLE_CLIENT_ID} from '../../environment/environment';
 import React from "react";
+import {AUTH} from "../../constants/actionTypes";
+import GoogleAuth from '../../components/Auth/GoogleAuth';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -53,29 +55,12 @@ const Login = () => {
 
               })
             }}
-            googleSuccess={async (res) => {
-              const result = res?.profileObj;
-              const token = res?.tokenId;
-
-              try {
-                dispatch(({type: 'AUTH', data: {result, token}}));
-              } catch (error) {
-                console.log(error)
-              }
-            }}
-
-            googleFailure={(error) => {
-              console.log(error);
-              console.log('Google Sign in Was Unsuccessful. Try again Later.')
-            }}
           >
             {({
                 errors,
                 handleBlur,
                 handleChange,
                 handleSubmit,
-                googleSuccess,
-                googleFailure,
                 isSubmitting,
                 touched,
                 values
@@ -121,16 +106,7 @@ const Login = () => {
                     xs={12}
                     md={6}
                   >
-                    <GoogleLogin clientId={GOOGLE_CLIENT_ID} render={(renderProps) => (<Button
-                      fullWidth
-                      startIcon={<GoogleIcon/>}
-                      onClick={renderProps.onClick}
-                      size="large"
-                      variant="contained"
-                    >
-                      Login with Google
-                    </Button>)}
-                                 onSuccess={googleSuccess} onFailure={googleFailure} cookiePolicy="single_host_origin"/>
+                    <GoogleAuth/>
                   </Grid>
                 </Grid>
                 <Box

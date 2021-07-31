@@ -50,7 +50,7 @@ const AccountProfile = (props) => {
             gutterBottom
             variant="h3"
           >
-            {user.result.firstName}  &nbsp;{user.result.lastName}
+            {user.result?.firstName || user?.result?.givenName}  &nbsp;{user.result?.lastName || user?.result?.familyName}
           </Typography>
           <Typography
             color="textSecondary"

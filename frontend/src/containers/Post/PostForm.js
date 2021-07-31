@@ -59,11 +59,11 @@ const PostForm = () => {
           onSubmit={(values) => {
             if (id) {
               dispatch(updatePost(id, {
-                ...values, name: `${user?.result?.firstName} ${user?.result?.lastName}`
+                ...values, name: `${user?.result?.firstName || user?.result?.givenName} ${user?.result?.lastName || user?.result?.familyName}`
               }));
             } else {
 
-              dispatch(createPosts({...values, name: `${user?.result?.firstName} ${user?.result?.lastName}`}));
+              dispatch(createPosts({...values, name: `${user?.result?.firstName || user?.result?.givenName} ${user?.result?.lastName || user?.result?.familyName}`}));
               navigate('/app/posts', {replace: true});
             }
 

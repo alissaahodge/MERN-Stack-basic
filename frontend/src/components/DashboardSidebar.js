@@ -98,7 +98,7 @@ const DashboardSidebar = ({onMobileClose, openMobile}) => {
       >
         <Avatar
           component={RouterLink}
-          src={user?.result?.profilePhoto || dummyFile}
+          src={user?.result?.profilePhoto || user?.result?.imageURL|| dummyFile}
           sx={{
             cursor: 'pointer',
             width: 64,
@@ -110,7 +110,7 @@ const DashboardSidebar = ({onMobileClose, openMobile}) => {
           color="textPrimary"
           variant="h5"
         >
-          {user?.result.firstName}&nbsp;{user?.result?.lastName}
+          {user?.result?.firstName || user?.result?.givenName}&nbsp;{user?.result?.lastName || user?.result?.familyName}
         </Typography>
         <Typography
           color="textSecondary"
