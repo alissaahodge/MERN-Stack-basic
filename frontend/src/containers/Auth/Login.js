@@ -1,6 +1,5 @@
 import {Link as RouterLink, useNavigate} from 'react-router-dom';
 import {useDispatch} from "react-redux";
-import {GoogleLogin} from "react-google-login";
 import {Helmet} from 'react-helmet';
 import * as Yup from 'yup';
 import {Formik} from 'formik';
@@ -14,11 +13,8 @@ import {
   Typography
 } from '@material-ui/core';
 import FacebookIcon from '../../icons/Facebook';
-import GoogleIcon from '../../icons/Google';
 import {signin} from '../../store/actions/auth';
-import {GOOGLE_CLIENT_ID} from '../../environment/environment';
 import React from "react";
-import {AUTH} from "../../constants/actionTypes";
 import GoogleAuth from '../../components/Auth/GoogleAuth';
 
 const Login = () => {
