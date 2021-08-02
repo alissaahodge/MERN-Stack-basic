@@ -1,0 +1,57 @@
+version: "3"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: compose/nginx/Dockerfile
+    ports:
+      - ${EXPRESS_PORT}:443
+      - ${REACT_PORT}:446
+    volumes:
+      - ./backend:/backend:delegated
+      - ./config/nginx/certs:/etc/nginx/certs
+    depends_on:
+      - express_backend
+      - react_frontend
+    environment:
+      - REACT_PORT
+      - EXPRESS_PORT
+    networks:
+      app_network:
+
+  express_backend:
+    build:
+      context: .
+      dockerfile: compose/express/Dockerfile
+    volumes:
+      - ./backend:/backend:delegated
+    expose:
+      - ${EXPRESS_PORT}
+    environment:
+      - ENV
+      - EXPRESS_PORT
+      - REACT_PORT
+    networks:
+      app_network:
+
+  react_frontend:
+    build:
+      context: .
+      dockerfile: compose/react/Dockerfile
+    depends_on:
+      - express_backend
+    volumes:
+      - ./frontend:/frontend:delegated
+      - /frontend/node_modules
+    expose:
+      - ${REACT_PORT}
+    environment:
+      - REACT_PORT
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      app_network:
+
+networks:
+  app_network:
+    driver: bridge

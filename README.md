@@ -2,6 +2,7 @@
 
 ## About 
 MERN stack is a web development framework. It consists of MongoDB - document database. Express(.js) - Node.js web framework. React(.js) - a client-side JavaScript framework. Node(.js) - the premier JavaScript web server.
+This development stack also makes use of Docker and Nginx.
 
 I have created this MERN stack template with basic features so that this can be used as a base for future projects using the MERN Stack.
 
@@ -15,30 +16,37 @@ The features included on this stack include:
 
 ## How To Run The Project 
 
+### Dev Setup :
+In order to run pystack locally your dev environment needs to be configured. To setup
+your environment, follow the following instructions:
+- make changes to file `env.example` to your choosing
+- RUN `make`<br>
+Poof! You're done!
+
 ### Frontend:
-Navigate to frontend/src/environment and create a file called `environment.js` pattern after file example.environment.js file.
-<br> In this file, you will specify your `google client id` to be used in the project.
-
-Then In the frontend directory, you can run:
-
-#### `npm install`
-#### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br> In this frontend/src/environment/environment.js, you will specify your `google client id` to be used in the project.
 
 ### Backend:
-First, go to the backend folder and create a .env file, patterning after file `.env.example`
-
-In a separate console, navigate to the backend directory:
-#### `npm install`
-#### `npm start`
+<br>
+in the .env file, specify the mongo d connection URL
 
 
 ## Notes:
+## **Advanced:**
+
+If you're reading this then we assume you want to adjust default values or setup step by step:
+
+1. Run the command `make env` in the project root. A file called `.env` will be
+created with default configs alongside `environment.ts` inside of 
+`frontend/src/environments`. Edit this to be whatever you want.
+
+2. `make build` - This will build each of the docker containers using the configurations you
+specified in `.env`
+
+3. `make up` - This will launch each docker containers for usage. You can visit the frontend at
+`http://localhost:{REACT_PORT}` and the express backend at `http://localhost:{EXPRESS_PORT}`
+
+
 #### `npm test`
 
 Launches the test runner in the interactive watch mode.\
