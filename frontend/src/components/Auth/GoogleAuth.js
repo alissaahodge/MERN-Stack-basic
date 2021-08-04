@@ -16,7 +16,7 @@ const GoogleAuth = () => {
     const token = res?.tokenId;
 
     try {
-      dispatch(({type: AUTH, data: {result, token}}));
+      dispatch(({type: AUTH, data: {result, token, social:true}}));
       navigate('/app/dashboard', {replace: true});
     } catch (error) {
       console.log(error)
