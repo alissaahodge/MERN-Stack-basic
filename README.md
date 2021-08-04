@@ -51,3 +51,35 @@ specified in `.env`
 
 Launches the test runner in the interactive watch mode.\
 
+
+### Screenshots
+##### Home
+<code>
+<img src='https://github.com/alissaahodge/MERN-Stack-basic/blob/master/ReadMeImages/Screenshot%202021-08-04%20at%207.29.47%20AM.png?raw=true'/>
+</code>
+
+##### Login
+<code>
+<img src='https://github.com/alissaahodge/MERN-Stack-basic/blob/master/ReadMeImages/Screenshot%202021-08-04%20at%207.30.09%20AM.png?raw=true'/>
+</code>
+
+##### Dashboard
+<code>
+<img src='https://github.com/alissaahodge/MERN-Stack-basic/blob/master/ReadMeImages/Screenshot%202021-08-04%20at%207.43.19%20AM.png?raw=true'/>
+</code>
+
+##### Posts Record Listing
+<code>
+<img src='https://github.com/alissaahodge/MERN-Stack-basic/blob/master/ReadMeImages/Screenshot%202021-08-04%20at%207.43.30%20AM.png?raw=true'/>
+</code>
+
+##### Sample Products Record Listing
+<code>
+<img src='https://github.com/alissaahodge/MERN-Stack-basic/blob/master/ReadMeImages/Screenshot%202021-08-04%20at%207.43.46%20AM.png?raw=true'/>
+</code>
+
+##### Account Settings
+<code>
+<img src='https://github.com/alissaahodge/MERN-Stack-basic/blob/master/ReadMeImages/Screenshot%202021-08-04%20at%207.43.51%20AM.png?raw=true'/>
+</code>
+
