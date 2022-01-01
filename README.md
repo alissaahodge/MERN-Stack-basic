@@ -14,6 +14,10 @@ The features included on this stack include:
 - basic posts module
 - user account settings
 
+<code>
+<img src='https://github.com/alissaahodge/MERN-Stack-basic/blob/master/ReadMeImages/Screenshot%202021-08-04%20at%207.43.30%20AM.png?raw=true'/>
+</code>
+
 ## How To Run The Project 
 
 ### Dev Setup :
@@ -66,11 +70,6 @@ Launches the test runner in the interactive watch mode.\
 ##### Dashboard
 <code>
 <img src='https://github.com/alissaahodge/MERN-Stack-basic/blob/master/ReadMeImages/Screenshot%202021-08-04%20at%207.43.19%20AM.png?raw=true'/>
-</code>
-
-##### Posts Record Listing
-<code>
-<img src='https://github.com/alissaahodge/MERN-Stack-basic/blob/master/ReadMeImages/Screenshot%202021-08-04%20at%207.43.30%20AM.png?raw=true'/>
 </code>
 
 ##### Sample Products Record Listing
